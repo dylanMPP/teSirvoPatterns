@@ -153,14 +153,17 @@ public class TeSirvoContainer {
 		int amountOfTrueCreated = 0;
 		// pasamos el amount de incluido como 0, pues el plan ya nos dice la capacidad y lo que viene incluido
 		// creo y añado el servicio al cliente con el método createService() que usa builder
+		int idToSum = Integer.parseInt(id);
+
 		if(cont==2){
 			for (int i = 0; i < services.size(); i++) {
-				if(createService(whichClient, whichContract, services.get(i), id, addressInstallation, dateInstallation,
+				if(createService(whichClient, whichContract, services.get(i), idToSum+"", addressInstallation, dateInstallation,
 						dateFacturation, state, meterCode, plan.getValueToPay(),
 						previousValue, 0,
 						amountOfConsumed, 0, amountOfLocalMinutesConsumed,
 						0, amountOfLargeDistanceMinutesConsumed,
 						planType)){
+					idToSum++;
 					amountOfTrueCreated++;
 				}
 			}

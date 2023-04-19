@@ -8,19 +8,17 @@ public abstract class Service {
 	private String dateInstallation;
 	private String dateFacturation;
 	private boolean state;
-	private String meterCode;
 	private double actualValue;
 	private double previousValue;
 
 	public Service(String id, String addressInstallation, String dateInstallation,
-				   String dateFacturation, boolean state, String meterCode, double actualValue,
+				   String dateFacturation, boolean state, double actualValue,
 				   double previousValue){
 		this.id = id;
 		this.addressInstallation = addressInstallation;
 		this.dateInstallation = dateInstallation;
 		this.dateFacturation = dateFacturation;
 		this.state = state;
-		this.meterCode = meterCode;
 		this.actualValue = actualValue;
 		this.previousValue = previousValue;
 	}
@@ -80,14 +78,6 @@ public abstract class Service {
 
 	public void setState(boolean state) {
 		this.state = state;
-	}
-
-	public String getMeterCode() {
-		return meterCode;
-	}
-
-	public void setMeterCode(String meterCode) {
-		this.meterCode = meterCode;
 	}
 
 	public double getActualValue() {

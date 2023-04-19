@@ -157,6 +157,8 @@ public class TeSirvoController {
                 amountOfConsumed, amountOfLocalMinutesIncluded, amountOfLocalMinutesConsumed,
                 amountOfLargeDistanceMinutesIncluded, amountOfLargeDistanceMinutesConsumed,
                 planType)) {
+
+            serviceIdAccum += (getPlan(whichPlan).getServices().size()-1);
             return true;
         } else {
             serviceIdAccum--;

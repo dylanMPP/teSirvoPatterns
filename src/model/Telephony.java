@@ -7,7 +7,7 @@ public class Telephony extends Service {
 	public Telephony(String id, String addressInstallation, String dateInstallation,
 					 String dateFacturation, boolean state, double actualValue, double previousValue, String planType) {
 		super(id, addressInstallation, dateInstallation, dateFacturation,
-				state, null, actualValue, previousValue);
+				state, actualValue, previousValue);
  		
 		if(planType.equalsIgnoreCase("LIMITED")){
 			this.planType = PlanType.Limitado;

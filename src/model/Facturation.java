@@ -11,7 +11,7 @@ public class Facturation implements IConsult {
 
 		for (int i = 0; i < Singleton.teSirvoContainer.getClients().size(); i++) {
 			msg += (i+1)+") CLIENT ID: "+Singleton.teSirvoContainer.getClients().get(i).getId()
-					+"\n"+Singleton.teSirvoContainer.getClients().get(i).toStringContracts()+"\n\n";
+					+"\n"+Singleton.teSirvoContainer.getClients().get(i).toStringContracts()+"\n";
 		}
 
 		return msg;
@@ -23,7 +23,7 @@ public class Facturation implements IConsult {
 
 		for (int i = 0; i < Singleton.teSirvoContainer.getClients().size(); i++) {
 			msg += (i+1)+") CLIENT ID: "+Singleton.teSirvoContainer.getClients().get(i).getId()+"\n"
-					+Singleton.teSirvoContainer.getClients().get(i).toStringContracts()+"\n\n";
+					+Singleton.teSirvoContainer.getClients().get(i).toStringPlans()+"\n";
 		}
 
 		return msg;
@@ -31,12 +31,6 @@ public class Facturation implements IConsult {
 
 	@Override
 	public String activePlans() {
-		String msg = "";
-
-		for (int i = 0; i < Singleton.planContainer.getPlans().size(); i++){
-			msg += (i+1)+") "+Singleton.planContainer.toStringPlans();
-		}
-
-		return msg;
+		return Singleton.planContainer.toStringPlans();
 	}
 }

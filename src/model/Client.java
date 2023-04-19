@@ -58,6 +58,22 @@ public class Client {
 		return msg;
 	}
 
+
+	public String toStringPlans(){
+		String msg = "";
+
+		for (int i = 0; i < contracts.size(); i++) {
+			if(contracts.get(i).getPlan()!=null){
+				msg += "- CONTRACT ID: "+contracts.get(i).getId()+"\n"+"- PLAN: "+contracts.get(i).getPlan().getName()+
+						"\n"+"- SERVICES ASSOCIATED TO PLAN: "+toStringServicesOfPlan(contracts.get(i).getPlan().getServices())+"\n\n";
+			} else {
+				msg += "- CONTRACT ID: "+contracts.get(i).getId()+"\n"+"- PLAN: No plan associated";
+			}
+		}
+
+		return msg;
+	}
+
 	public String toStringServices(ArrayList<Service> services){
 		String msg = "";
 
@@ -65,6 +81,20 @@ public class Client {
 			msg += ""+services.get(i).toString()+"\n";
 		}
 
+		return msg;
+	}
+
+	public String toStringServicesOfPlan(ArrayList<String> services){
+		String msg = "";
+
+		for (int i = 0; i < services.size(); i++) {
+
+			if(i != services.size()-1){
+				msg += services.get(i)+" - ";
+			} else {
+				msg += services.get(i)+"";
+			}
+		}
 		return msg;
 	}
 
