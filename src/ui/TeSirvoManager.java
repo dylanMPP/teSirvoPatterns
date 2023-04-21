@@ -67,7 +67,7 @@ public class TeSirvoManager {
 
 	public static void createService2(){
 		String serviceId = controller.createService("2", "2", "INTERNET UNLIMITED",
-				"Carrera 19 bis #6 bis sur 40", "20/04/2023", "20/03/2023", true,
+				"Calle 32 #88 - 24", "20/04/2023", "20/03/2023", true,
 				"100", 72000, 0,  0, 0, 0,
 				0, 0, 0, "");
 

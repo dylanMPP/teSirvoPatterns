@@ -119,12 +119,7 @@ public class TeSirvoContainer {
 	 *
 	 */
 	public boolean buyPlan(Plan plan, String whichContract, String whichClient,
-						   String id, String addressInstallation, String dateInstallation,
-						   String dateFacturation, boolean state, String meterCode, double actualValue,
-						   double previousValue, double amountOfConsumeIncluded,
-						   double amountOfConsumed, double amountOfLocalMinutesIncluded, double amountOfLocalMinutesConsumed,
-						   double amountOfLargeDistanceMinutesIncluded, double amountOfLargeDistanceMinutesConsumed,
-						   String planType) {
+						   ArrayList<Service> services) {
 		int cont = 0;
 
 		for (int i = 0; i < Singleton.teSirvoContainer.getClients().size(); i++) {
@@ -135,43 +130,17 @@ public class TeSirvoContainer {
 				}
 		}
 
-		// busco el plan para mirar todos los servicios que ofrece y así ir creando uno a uno para luego añadirselos al
-		// cliente en el contrato especificado
-		ArrayList<String> services = new ArrayList<>();
-
 		if(cont==1){
-			for (int i = 0; i < Singleton.planContainer.getPlans().size(); i++) {
-				if(Singleton.planContainer.getPlans().get(i).equals(plan)){
-					services = Singleton.planContainer.getPlans().get(i).getServices();
-					cont++;
+			for (int i = 0; i < Singleton.teSirvoContainer.getClients().size(); i++) {
+				if(Singleton.teSirvoContainer.getClients().get(i).getId().equalsIgnoreCase(whichClient)){
+					for (int j = 0; j < services.size(); j++) {
+						Singleton.teSirvoContainer.getClients().get(i).addService(whichContract, services.get(j));
+					}
+					return true;
 				}
 			}
-		} else {
-			return false;
 		}
-
-		int amountOfTrueCreated = 0;
-		// pasamos el amount de incluido como 0, pues el plan ya nos dice la capacidad y lo que viene incluido
-		// creo y añado el servicio al cliente con el método createService() que usa builder
-		int idToSum = Integer.parseInt(id);
-
-		if(cont==2){
-			for (int i = 0; i < services.size(); i++) {
-				if(createService(whichClient, whichContract, services.get(i), idToSum+"", addressInstallation, dateInstallation,
-						dateFacturation, state, meterCode, plan.getValueToPay(),
-						previousValue, 0,
-						amountOfConsumed, 0, amountOfLocalMinutesConsumed,
-						0, amountOfLargeDistanceMinutesConsumed,
-						planType)){
-					idToSum++;
-					amountOfTrueCreated++;
-				}
-			}
-		} else {
-			return false;
-		}
-
-		return amountOfTrueCreated == services.size();
+		return false;
 	}
 
 	public ArrayList<Client> getClients() {
